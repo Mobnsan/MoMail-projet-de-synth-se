@@ -64,7 +64,7 @@ class EmailService
 
     private static function sendWithSendGrid($message, $config, $fromAddress)
     {
-        $apiKey = $config['sendgridApiKey'] ?? env('SENDGRID_API_KEY');
+        $apiKey = trim($config['sendgridApiKey'] ?? env('SENDGRID_API_KEY') ?? '');
         
         $response = Http::withToken($apiKey)->post('https://api.sendgrid.com/v3/mail/send', [
             'personalizations' => [
@@ -89,8 +89,8 @@ class EmailService
 
     private static function sendWithMailgun($message, $config, $fromAddress)
     {
-        $apiKey = $config['mailgunApiKey'] ?? env('MAILGUN_API_KEY');
-        $domain = $config['mailgunDomain'] ?? env('MAILGUN_DOMAIN');
+        $apiKey = trim($config['mailgunApiKey'] ?? env('MAILGUN_API_KEY') ?? '');
+        $domain = trim($config['mailgunDomain'] ?? env('MAILGUN_DOMAIN') ?? '');
         
         $response = Http::withBasicAuth('api', $apiKey)->asForm()
             ->post("https://api.mailgun.net/v3/{$domain}/messages", [

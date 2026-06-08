@@ -14,7 +14,7 @@ MoMail is a full-featured email campaign management application. It allows you t
 ## Tech Stack
 
 - **Frontend**: React (Single Page Application)
-- **Backend**: Laravel 11
+- **Backend**: Laravel 12
 - **Database**: MySQL
 
 ## Setup Instructions
